@@ -7,3 +7,4 @@ Exemplar design patterns which can be found in this repo:
 - Facade
 - Flyweight
 - Singleton
+- Strategy

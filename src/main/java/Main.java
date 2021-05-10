@@ -12,6 +12,9 @@ import flyweight.chess.ChessPiece;
 import flyweight.chess.WhitePiece;
 import flyweight.chess.WhiteQueen;
 import singleton.game.GuessGame;
+import strategy.PriceCalculator;
+import strategy.pricing.RegularPrice;
+import strategy.pricing.SalePrice;
 
 public class Main {
 
@@ -56,6 +59,23 @@ public class Main {
         //exactly same Color object is used
         System.out.println(blackPawn.getColor()==blackQueen.getColor());
         System.out.println(whitePawn.getColor()==whiteQueen.getColor());
+
+        //Strategy
+        System.out.println("\n**** Strategy design pattern ****\n");
+
+        PriceCalculator priceCalculator = new PriceCalculator();
+        //Normal price for user who is not signed up for the newsletter
+        priceCalculator.setPricingStrategy(new RegularPrice());
+        priceCalculator.calculate(100, false);
+        //Wrong pricing strategy for a user who is signed up for the newsletter
+        priceCalculator.setPricingStrategy(new RegularPrice());
+        priceCalculator.calculate(100, true);
+        //User is signed up for the newsletter
+        priceCalculator.setPricingStrategy(new SalePrice());
+        priceCalculator.calculate(100, true);
+        //Wrong pricing strategy for a user who is not signed up for the newsletter
+        priceCalculator.setPricingStrategy(new SalePrice());
+        priceCalculator.calculate(100, false);
 
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");
