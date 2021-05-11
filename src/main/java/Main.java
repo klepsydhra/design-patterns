@@ -1,4 +1,9 @@
 import builder.flight.FlightLeg;
+import command.MusicPlayer;
+import command.MusicPlayerRemote;
+import command.musicPlayerCommand.PlayFirstTrackCommand;
+import command.musicPlayerCommand.PlayNextTrackCommand;
+import command.musicPlayerCommand.PlayRandomTrackCommand;
 import facade.bank.AtmMachineFacade;
 import factory.car.BMWModel;
 import factory.car.Car;
@@ -76,6 +81,21 @@ public class Main {
         //Wrong pricing strategy for a user who is not signed up for the newsletter
         priceCalculator.setPricingStrategy(new SalePrice());
         priceCalculator.calculate(100, false);
+
+        //Command
+        System.out.println("\n**** Command design pattern ****\n");
+
+        MusicPlayer musicPlayer = new MusicPlayer();
+        MusicPlayerRemote remote = new MusicPlayerRemote();
+        remote.setMusicPlayerCommand(new PlayFirstTrackCommand(musicPlayer));
+        remote.pressButton();
+        remote.setMusicPlayerCommand(new PlayNextTrackCommand(musicPlayer));
+        remote.pressButton();
+        remote.pressButton();
+        remote.pressButton();
+        remote.setMusicPlayerCommand(new PlayRandomTrackCommand(musicPlayer));
+        remote.pressButton();
+        remote.pressButton();
 
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");

@@ -8,3 +8,5 @@ Exemplar design patterns which can be found in this repo:
 - Flyweight
 - Singleton
 - Strategy
+- Command
+
