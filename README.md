@@ -9,4 +9,5 @@ Exemplar design patterns which can be found in this repo:
 - Singleton
 - Strategy
 - Command
+- Chain of Responsibility
 

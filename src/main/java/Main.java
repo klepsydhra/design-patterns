@@ -1,4 +1,10 @@
 import builder.flight.FlightLeg;
+import chainOfResponsibility.child.Ania;
+import chainOfResponsibility.child.Antek;
+import chainOfResponsibility.child.Child;
+import chainOfResponsibility.child.Tomek;
+import chainOfResponsibility.MotherRequest;
+import chainOfResponsibility.Shelf;
 import command.MusicPlayer;
 import command.MusicPlayerRemote;
 import command.musicPlayerCommand.PlayFirstTrackCommand;
@@ -96,6 +102,17 @@ public class Main {
         remote.setMusicPlayerCommand(new PlayRandomTrackCommand(musicPlayer));
         remote.pressButton();
         remote.pressButton();
+
+        //Chain of Responsibility
+        System.out.println("\n**** Chain of Responsibility design pattern ****\n");
+
+        MotherRequest motherRequest = new MotherRequest(Shelf.HIGH);
+        Child tomek = new Tomek();
+        Child ania = new Ania();
+        Child antek = new Antek();
+        tomek.setTallerChild(ania);
+        ania.setTallerChild(antek);
+        tomek.processRequest(motherRequest);
 
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");
