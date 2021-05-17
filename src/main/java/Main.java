@@ -1,10 +1,15 @@
+import adapter.BookConnector;
+import adapter.User;
+import adapter.library.APIAdapter;
+import adapter.library.LibraryApiv2;
+import adapter.library.LibraryApiv2Impl;
 import builder.flight.FlightLeg;
+import chainOfResponsibility.MotherRequest;
+import chainOfResponsibility.Shelf;
 import chainOfResponsibility.child.Ania;
 import chainOfResponsibility.child.Antek;
 import chainOfResponsibility.child.Child;
 import chainOfResponsibility.child.Tomek;
-import chainOfResponsibility.MotherRequest;
-import chainOfResponsibility.Shelf;
 import command.MusicPlayer;
 import command.MusicPlayerRemote;
 import command.musicPlayerCommand.PlayFirstTrackCommand;
@@ -114,6 +119,10 @@ public class Main {
         ania.setTallerChild(antek);
         tomek.processRequest(motherRequest);
 
+        //Adapter
+        System.out.println("\n**** Adapter design pattern ****\n");
+        runAdapterExample();
+
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");
 
@@ -128,5 +137,13 @@ public class Main {
                 System.out.println("And the score is correct!");
             }
         }
+    }
+
+    private static void runAdapterExample() {
+        User user = new User("Jakub","Kowalski","32131212");
+        LibraryApiv2 libraryAPIv2 = new LibraryApiv2Impl();
+        APIAdapter apiAdapter = new APIAdapter(libraryAPIv2, user);
+        BookConnector connector = new BookConnector(user, apiAdapter);
+        connector.checkAvailability("The Godfather");
     }
 }
