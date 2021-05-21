@@ -11,4 +11,5 @@ Exemplar design patterns which can be found in this repo:
 - Command
 - Chain of Responsibility
 - Adapter
+- Template Method
 

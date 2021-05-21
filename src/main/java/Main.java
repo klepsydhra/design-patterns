@@ -31,6 +31,9 @@ import singleton.game.GuessGame;
 import strategy.PriceCalculator;
 import strategy.pricing.RegularPrice;
 import strategy.pricing.SalePrice;
+import templateMethod.MyDay;
+import templateMethod.TypeOfTransport;
+import templateMethod.WeekDay;
 
 public class Main {
 
@@ -123,6 +126,10 @@ public class Main {
         System.out.println("\n**** Adapter design pattern ****\n");
         runAdapterExample();
 
+        //Template Method
+        System.out.println("\n**** Template Method design pattern ****\n");
+        runTemplateMethodExample();
+
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");
 
@@ -145,5 +152,13 @@ public class Main {
         APIAdapter apiAdapter = new APIAdapter(libraryAPIv2, user);
         BookConnector connector = new BookConnector(user, apiAdapter);
         connector.checkAvailability("The Godfather");
+    }
+
+    private static void runTemplateMethodExample() {
+        WeekDay dayBike = new MyDay();
+        dayBike.everyDayIsExactlyTheSame(TypeOfTransport.BIKE);
+
+        WeekDay dayCar = new MyDay();
+        dayCar.everyDayIsExactlyTheSame(TypeOfTransport.CAR);
     }
 }
