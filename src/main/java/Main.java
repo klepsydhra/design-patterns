@@ -28,6 +28,7 @@ import flyweight.chess.ChessPiece;
 import flyweight.chess.WhitePiece;
 import flyweight.chess.WhiteQueen;
 import singleton.game.GuessGame;
+import state.gameMachine.GameMachine;
 import strategy.PriceCalculator;
 import strategy.pricing.RegularPrice;
 import strategy.pricing.SalePrice;
@@ -130,6 +131,10 @@ public class Main {
         System.out.println("\n**** Template Method design pattern ****\n");
         runTemplateMethodExample();
 
+        //State
+        System.out.println("\n**** State design pattern ****\n");
+        runStateExample();
+
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");
 
@@ -160,5 +165,19 @@ public class Main {
 
         WeekDay dayCar = new MyDay();
         dayCar.everyDayIsExactlyTheSame(TypeOfTransport.CAR);
+    }
+
+    private static void runStateExample() {
+        GameMachine gameMachine = new GameMachine();
+        gameMachine.showCurrentState();
+
+        gameMachine.insertCoin();
+        gameMachine.showCurrentState();
+
+        gameMachine.pullTrigger();
+        gameMachine.showCurrentState();
+
+        gameMachine.takeAward();
+        gameMachine.showCurrentState();
     }
 }

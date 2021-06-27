@@ -12,4 +12,5 @@ Exemplar design patterns which can be found in this repo:
 - Chain of Responsibility
 - Adapter
 - Template Method
+- State
 
