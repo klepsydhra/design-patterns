@@ -13,4 +13,5 @@ Exemplar design patterns which can be found in this repo:
 - Adapter
 - Template Method
 - State
+- Memento
 

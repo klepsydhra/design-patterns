@@ -27,6 +27,8 @@ import flyweight.chess.BlackQueen;
 import flyweight.chess.ChessPiece;
 import flyweight.chess.WhitePiece;
 import flyweight.chess.WhiteQueen;
+import memento.OperatingSystem;
+import memento.OperatingSystemCaretaker;
 import singleton.game.GuessGame;
 import state.gameMachine.GameMachine;
 import strategy.PriceCalculator;
@@ -38,7 +40,7 @@ import templateMethod.WeekDay;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //Builder
         System.out.println("\n**** Builder design pattern ****\n");
@@ -135,6 +137,10 @@ public class Main {
         System.out.println("\n**** State design pattern ****\n");
         runStateExample();
 
+        //Memento
+        System.out.println("\n**** Memento design pattern ****\n");
+        runMementoExample();
+
         //Singleton
         System.out.println("\n**** Singleton design pattern ****\n");
 
@@ -179,5 +185,20 @@ public class Main {
 
         gameMachine.takeAward();
         gameMachine.showCurrentState();
+    }
+
+    private static void runMementoExample() throws InterruptedException {
+        OperatingSystemCaretaker operatingSystemCaretaker = new OperatingSystemCaretaker();
+        OperatingSystem operatingSystem = new OperatingSystem();
+        operatingSystem.createBackup();
+        Thread.sleep(3000);
+        operatingSystem.createBackup();
+        Thread.sleep(3000);
+        operatingSystemCaretaker.addMemento(operatingSystem.save());
+        operatingSystem.createBackup();
+        Thread.sleep(3000);
+        operatingSystem.createBackup();
+        Thread.sleep(3000);
+        operatingSystem.load(operatingSystemCaretaker.getMemento());
     }
 }
